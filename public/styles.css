@@ -146,7 +146,7 @@ img {
   inset: 0;
   background:
     linear-gradient(180deg, rgba(10, 22, 40, 0.35) 0%, rgba(10, 22, 40, 0.75) 55%, var(--navy) 100%),
-    url("public/hero-stadium.jpg") center / cover no-repeat;
+    url("hero-stadium.jpg") center / cover no-repeat;
   transform: scale(1.02);
 }
 

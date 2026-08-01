@@ -11,10 +11,10 @@ Not affiliated with the NFL or the Denver Broncos.
 
 ## Local
 
-Open `index.html` in a browser, or:
+Open `public/index.html` in a browser, or:
 
 ```bash
-npx serve .
+npx serve public
 ```
 
 ## Stack

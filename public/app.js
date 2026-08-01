@@ -6,7 +6,7 @@
       name: "Bo Nix",
       pos: "QB",
       number: "10",
-      image: "public/players/bo-nix.jpg",
+      image: "players/bo-nix.jpg",
       flavor: "Ice in the thin air. Pocket poet. Future on his arm.",
       hype:
         "The kid from Eugene who made the Rockies feel small. Quick release, cold eyes, chaos-friendly. When Bo’s in rhythm, Mile High gets loud — and the rest of the AFC starts checking the scoreboard twice.",
@@ -16,7 +16,7 @@
       name: "Courtland Sutton",
       pos: "WR",
       number: "14",
-      image: "public/players/courtland-sutton.jpg",
+      image: "players/courtland-sutton.jpg",
       flavor: "High-point royalty. Jump ball? Already claimed.",
       hype:
         "Six-five of “that’s my ball.” High-point king. Contested-catch problem for every corner unlucky enough to draw him. When the game needs a spark, you throw it up and trust Court.",
@@ -26,7 +26,7 @@
       name: "Patrick Surtain II",
       pos: "CB",
       number: "2",
-      image: "public/players/patrick-surtain.jpg",
+      image: "players/patrick-surtain.jpg",
       flavor: "Lockdown foil. See green, erase green.",
       hype:
         "Shutdown mode: activated. Elite feet, zero panic, the kind of cover that makes QBs pretend they never saw the read. Opposing offenses game-plan around PS2 — and still lose the matchup.",
@@ -36,7 +36,7 @@
       name: "Nik Bonitto",
       pos: "EDGE",
       number: "15",
-      image: "public/players/nik-bonitto.jpg",
+      image: "players/nik-bonitto.jpg",
       flavor: "Edge lightning. First step. Last sound.",
       hype:
         "Speed off the edge that feels illegal. Bend. Burst. Sack parties in the thin air. When Niko’s hunting, pocket time gets real personal.",
@@ -46,7 +46,7 @@
       name: "Marvin Mims Jr.",
       pos: "WR / PR",
       number: "19",
-      image: "public/players/marvin-mims.jpg",
+      image: "players/marvin-mims.jpg",
       flavor: "Turbo orange. Catch. Cut. Vanish.",
       hype:
         "Jet fuel in orange. One cut and he’s gone — return lane or go-route, same story. The room changes when #19 touches the ball.",
