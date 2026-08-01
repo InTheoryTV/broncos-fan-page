@@ -1,5 +1,6 @@
 /* Mile High Noise — star ring + Ring of Fame + hype board */
 (function () {
+  // image = Star Card Ring art; hypeImage = alternate full card for Hype Board (2 cards/player)
   const PLAYERS = [
     {
       id: "bo-nix",
@@ -7,6 +8,7 @@
       pos: "QB",
       number: "10",
       image: "players/bo-nix.jpg",
+      hypeImage: "players/hype/bo-nix.jpg",
       flavor: "Ice in the thin air. Pocket poet. Future on his arm.",
       hype:
         "The kid from Eugene who made the Rockies feel small. Quick release, cold eyes, chaos-friendly. When Bo’s in rhythm, Mile High gets loud — and the rest of the AFC starts checking the scoreboard twice.",
@@ -17,6 +19,7 @@
       pos: "WR",
       number: "14",
       image: "players/courtland-sutton.jpg",
+      hypeImage: "players/hype/courtland-sutton.jpg",
       flavor: "High-point royalty. Jump ball? Already claimed.",
       hype:
         "Six-five of “that’s my ball.” High-point king. Contested-catch problem for every corner unlucky enough to draw him. When the game needs a spark, you throw it up and trust Court.",
@@ -27,6 +30,7 @@
       pos: "CB",
       number: "2",
       image: "players/patrick-surtain.jpg",
+      hypeImage: "players/hype/patrick-surtain.jpg",
       flavor: "Lockdown foil. See green, erase green.",
       hype:
         "Shutdown mode: activated. Elite feet, zero panic, the kind of cover that makes QBs pretend they never saw the read. Opposing offenses game-plan around PS2 — and still lose the matchup.",
@@ -37,6 +41,7 @@
       pos: "EDGE",
       number: "15",
       image: "players/nik-bonitto.jpg",
+      hypeImage: "players/hype/nik-bonitto.jpg",
       flavor: "Edge lightning. First step. Last sound.",
       hype:
         "Speed off the edge that feels illegal. Bend. Burst. Sack parties in the thin air. When Niko’s hunting, pocket time gets real personal.",
@@ -47,6 +52,7 @@
       pos: "WR / PR",
       number: "19",
       image: "players/marvin-mims.jpg",
+      hypeImage: "players/hype/marvin-mims.jpg",
       flavor: "Turbo orange. Catch. Cut. Vanish.",
       hype:
         "Jet fuel in orange. One cut and he’s gone — return lane or go-route, same story. The room changes when #19 touches the ball.",
@@ -348,26 +354,31 @@
     renderCard: rofCard,
   });
 
-  function fillHypeGrid(el, items) {
+  function fillHypeGrid(el, items, { useAltCard = false } = {}) {
     if (!el) return;
     el.innerHTML = items
-      .map(
-        (p) => `
+      .map((p) => {
+        // Hype Board: alternate full foil card before text; ring art stays on top
+        const src = useAltCard && p.hypeImage ? p.hypeImage : p.image;
+        const alt = useAltCard
+          ? `${p.name} #${p.number} alternate foil card`
+          : `${p.name} #${p.number}`;
+        return `
     <article class="hype-card">
-      <div class="hype-photo">
-        <img src="${p.image}" alt="${p.name} #${p.number}" loading="lazy" />
+      <div class="hype-foil">
+        <img src="${src}" alt="${alt}" loading="lazy" width="832" height="1248" />
       </div>
       <div class="hype-body">
         <span class="pos">${p.pos} · #${p.number}</span>
         <h3>${p.name}</h3>
         <p>${p.hype}</p>
       </div>
-    </article>`
-      )
+    </article>`;
+      })
       .join("");
   }
 
-  fillHypeGrid(document.getElementById("hypeGrid"), PLAYERS);
+  fillHypeGrid(document.getElementById("hypeGrid"), PLAYERS, { useAltCard: true });
   fillHypeGrid(document.getElementById("legendsGrid"), ROF);
 
   // Arrow keys target the star ring when focused in page
