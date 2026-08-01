@@ -131,11 +131,33 @@
     let lastX = 0;
 
     function measure() {
-      const card = trackEl.querySelector(".sport-card");
-      if (!card) return;
-      const styles = getComputedStyle(trackEl);
-      gap = parseFloat(styles.gap) || 20;
-      cardWidth = card.getBoundingClientRect().width;
+      const cards = trackEl.querySelectorAll(".sport-card");
+      if (!cards.length) return;
+      // Use layout width (not scaled) so centering stays stable for every card
+      cardWidth = cards[0].offsetWidth;
+      if (cards.length > 1) {
+        const a = cards[0].getBoundingClientRect();
+        const b = cards[1].getBoundingClientRect();
+        // Distance between unscaled layout starts ≈ cardWidth + gap
+        // Prefer offsetLeft (layout coords, ignores transform/scale)
+        gap = Math.max(0, cards[1].offsetLeft - cards[0].offsetLeft - cardWidth);
+        if (!Number.isFinite(gap) || gap < 0) {
+          gap = Math.max(0, b.left - a.left - a.width);
+        }
+      } else {
+        const styles = getComputedStyle(trackEl);
+        const raw = styles.columnGap || styles.gap || "20px";
+        gap = raw.endsWith("px") ? parseFloat(raw) : 16;
+      }
+    }
+
+    /** Offset that centers card `i` fully inside the viewport (first → last). */
+    function offsetFor(i) {
+      measure();
+      const vw = viewportEl.clientWidth;
+      // Center of card i in track space, then shift so it lands in viewport center
+      const cardCenter = i * (cardWidth + gap) + cardWidth / 2;
+      return vw / 2 - cardCenter;
     }
 
     function render() {
@@ -153,17 +175,17 @@
     function updateActive() {
       trackEl.querySelectorAll(".sport-card").forEach((el, i) => {
         el.classList.toggle("is-active", i === index);
-        el.style.setProperty("--tilt", `${(i - index) * -8}deg`);
+        el.style.setProperty("--tilt", `${(i - index) * -6}deg`);
       });
       dotsEl.querySelectorAll("button").forEach((btn, i) => {
         btn.setAttribute("aria-selected", String(i === index));
       });
-      measure();
-      trackEl.style.transform = `translate3d(${-(index * (cardWidth + gap))}px, 0, 0)`;
+      trackEl.style.transform = `translate3d(${offsetFor(index)}px, 0, 0)`;
     }
 
     function goTo(i) {
-      index = (i + items.length) % items.length;
+      // Clamp at ends so the last card can fully settle in frame (no wrap-skip)
+      index = Math.max(0, Math.min(items.length - 1, i));
       updateActive();
     }
 
@@ -175,17 +197,12 @@
       goTo(index - 1);
     }
 
-    function getTrackX() {
-      measure();
-      return -(index * (cardWidth + gap));
-    }
-
     function onPointerDown(e) {
       dragging = true;
       viewportEl.classList.add("is-dragging");
       startX = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
       lastX = startX;
-      startTransform = getTrackX();
+      startTransform = offsetFor(index);
       trackEl.style.transition = "none";
       if (e.pointerId != null && viewportEl.setPointerCapture) {
         try {
@@ -207,7 +224,7 @@
       viewportEl.classList.remove("is-dragging");
       trackEl.style.transition = "";
       const dx = lastX - startX;
-      const threshold = cardWidth * 0.18;
+      const threshold = Math.max(36, cardWidth * 0.14);
       if (dx < -threshold) next();
       else if (dx > threshold) prev();
       else updateActive();
@@ -222,7 +239,7 @@
     });
     trackEl.addEventListener("click", (e) => {
       const card = e.target.closest(".sport-card");
-      if (!card) return;
+      if (!card || dragging) return;
       goTo(Number(card.dataset.index));
     });
 
@@ -247,12 +264,14 @@
     );
     viewportEl.addEventListener("touchend", onPointerUp);
 
-    window.addEventListener("resize", updateActive);
+    window.addEventListener("resize", () => {
+      requestAnimationFrame(updateActive);
+    });
 
     render();
+    // Double rAF: layout + images can shift card widths on first paint
     requestAnimationFrame(() => {
-      measure();
-      updateActive();
+      requestAnimationFrame(updateActive);
     });
 
     return { next, prev, goTo };
