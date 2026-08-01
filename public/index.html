@@ -22,8 +22,9 @@
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="#home">Home</a>
-      <a href="#ring">The Ring</a>
-      <a href="#stars">Stars</a>
+      <a href="#ring">Stars</a>
+      <a href="#rof">Ring of Fame</a>
+      <a href="#stars">Hype</a>
       <a href="#roar">Roar</a>
     </nav>
   </header>
@@ -40,32 +41,54 @@
         <a class="cta" href="#ring">Spin the ring →</a>
       </div>
       <div class="hero-stats" aria-label="Hype stats">
-        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Foil cards</span></div>
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Star cards</span></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Ring of Fame</span></div>
         <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Mile High energy</span></div>
-        <div class="stat"><span class="stat-num">1</span><span class="stat-label">Mission: noise</span></div>
       </div>
     </section>
 
-    <!-- THE RING -->
+    <!-- CURRENT STARS RING (not Ring of Fame) -->
     <section id="ring" class="ring-section">
       <div class="section-head">
         <p class="eyebrow">Collect the foil</p>
-        <h2>The Broncos Ring</h2>
-        <p class="section-sub">Swipe the foil. Collect the energy.</p>
+        <h2>Star Card Ring</h2>
+        <p class="section-sub">Today’s noise — swipe the foil. Names match the numbers on the art.</p>
       </div>
 
       <div class="ring-stage">
-        <button class="ring-btn prev" type="button" aria-label="Previous card">‹</button>
+        <button class="ring-btn prev" type="button" aria-label="Previous star card">‹</button>
 
         <div class="ring-viewport" id="ringViewport">
           <div class="ring-track" id="ringTrack" role="list"></div>
         </div>
 
-        <button class="ring-btn next" type="button" aria-label="Next card">›</button>
+        <button class="ring-btn next" type="button" aria-label="Next star card">›</button>
       </div>
 
-      <div class="ring-dots" id="ringDots" role="tablist" aria-label="Card position"></div>
+      <div class="ring-dots" id="ringDots" role="tablist" aria-label="Star card position"></div>
       <p class="ring-hint">Drag · swipe · arrow keys</p>
+    </section>
+
+    <!-- FRANCHISE RING OF FAME (secondary) -->
+    <section id="rof" class="ring-section ring-section--rof">
+      <div class="section-head">
+        <p class="eyebrow">Franchise legends</p>
+        <h2>Ring of Fame</h2>
+        <p class="section-sub">The real one — Elway, Manning, TD, and more. Unofficial fan tribute to the stadium ring.</p>
+      </div>
+
+      <div class="ring-stage">
+        <button class="ring-btn rof-btn prev" type="button" aria-label="Previous Ring of Fame card">‹</button>
+
+        <div class="ring-viewport" id="rofViewport">
+          <div class="ring-track" id="rofTrack" role="list"></div>
+        </div>
+
+        <button class="ring-btn rof-btn next" type="button" aria-label="Next Ring of Fame card">›</button>
+      </div>
+
+      <div class="ring-dots" id="rofDots" role="tablist" aria-label="Ring of Fame position"></div>
+      <p class="ring-hint">Swipe the legends · full RoF has 38 — these are the loudest</p>
     </section>
 
     <!-- HYPE BOARD -->
@@ -73,7 +96,7 @@
       <div class="section-head">
         <p class="eyebrow">Loud takes only</p>
         <h2>Hype Board</h2>
-        <p class="section-sub">Star players. Full volume. No corporate mush.</p>
+        <p class="section-sub">Current stars. Full volume. No corporate mush.</p>
       </div>
       <div class="hype-grid" id="hypeGrid"></div>
     </section>

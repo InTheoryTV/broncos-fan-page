@@ -718,3 +718,30 @@ img {
     transition: none !important;
   }
 }
+
+
+/* Ring of Fame secondary band */
+.ring-section--rof {
+  padding-top: 2rem;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240, 193, 75, 0.12), transparent 60%);
+}
+
+.ring-section--rof .section-head h2 {
+  background: linear-gradient(90deg, var(--gold-soft), var(--gold), #fb4f14);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-badge--gold {
+  border-color: rgba(240, 193, 75, 0.75);
+  color: var(--gold-soft);
+  background: rgba(10, 22, 40, 0.85);
+}
+
+.sport-card--legend.is-active {
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    0 0 36px rgba(240, 193, 75, 0.35);
+}
