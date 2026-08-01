@@ -59,8 +59,9 @@
     },
   ];
 
-  // Franchise Ring of Fame highlights (unofficial fan tribute; not the full 38)
-  // Flavor + hype: Honey copy pack (foil-bright, no corporate mush)
+  // Franchise Ring of Fame (unofficial fan tribute; not the full 38)
+  // image = RoF ring art; hypeImage = alternate full card for Legends Board (2 cards/legend)
+  // Flavor + hype: Honey copy pack
   const ROF = [
     {
       id: "john-elway",
@@ -69,6 +70,7 @@
       number: "7",
       year: "1999",
       image: "rof/john-elway.jpg",
+      hypeImage: "rof/hype/john-elway.jpg",
       flavor: "Drive of a lifetime. Comeback king. Mile High forever.",
       hype:
         "The arm that built modern Mile High. Late-game ice in the veins, helicopter spins into legend. Two rings as a player, forever the face of Broncos football.",
@@ -80,6 +82,7 @@
       number: "18",
       year: "2021",
       image: "rof/peyton-manning.jpg",
+      hypeImage: "rof/hype/peyton-manning.jpg",
       flavor: "Sheriff of the thin air. Reads defenses like open books.",
       hype:
         "The Sheriff brought a playbook and a parade. Cadence, timing, surgical strikes — Denver’s offense became a clinic with #18 under center.",
@@ -91,6 +94,7 @@
       number: "30",
       year: "2007",
       image: "rof/terrell-davis.jpg",
+      hypeImage: "rof/hype/terrell-davis.jpg",
       flavor: "TD time. Bowls, bruises, unstoppable.",
       hype:
         "Between the tackles and into October lore. Power, vision, Super Bowl MVP energy. When TD had the rock, the whole mountain leaned forward.",
@@ -102,6 +106,7 @@
       number: "84",
       year: "2009",
       image: "rof/shannon-sharpe.jpg",
+      hypeImage: "rof/hype/shannon-sharpe.jpg",
       flavor: "Tight end thunder. Hands of gold. Mouth of fire.",
       hype:
         "Mismatch nightmare with Hall of Fame hands. After the catch, chaos. After the game, the mic. Broncos swagger personified.",
@@ -113,6 +118,7 @@
       number: "24",
       year: "2019",
       image: "rof/champ-bailey.jpg",
+      hypeImage: "rof/hype/champ-bailey.jpg",
       flavor: "Shutdown royalty. Elite cover. Zero freebies.",
       hype:
         "Prime-time lockdown with grace and grit. Receivers disappeared when Champ lined up. Corner play at its purest.",
@@ -124,6 +130,7 @@
       number: "88",
       year: "2025",
       image: "rof/demaryius-thomas.jpg",
+      hypeImage: "rof/hype/demaryius-thomas.jpg",
       flavor: "DT deep threat. Go-ball gravity. Orange forever.",
       hype:
         "Big body, bigger moments. Contested catches, deep shots, and a smile that still lives in Broncos Country. #88 never really left.",
@@ -379,7 +386,7 @@
   }
 
   fillHypeGrid(document.getElementById("hypeGrid"), PLAYERS, { useAltCard: true });
-  fillHypeGrid(document.getElementById("legendsGrid"), ROF);
+  fillHypeGrid(document.getElementById("legendsGrid"), ROF, { useAltCard: true });
 
   // Arrow keys target the star ring when focused in page
   window.addEventListener("keydown", (e) => {
