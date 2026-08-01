@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mile High Noise — Unofficial Broncos Fan HQ</title>
+  <meta name="description" content="Unofficial Denver Broncos fan HQ — foil-bright cards, ring of stars, pure orange noise." />
+  <meta name="theme-color" content="#0A1628" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="#home" aria-label="Home">
+      <span class="logo-mark">MH</span>
+      <span class="logo-text">Mile High Noise</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#ring">The Ring</a>
+      <a href="#stars">Stars</a>
+      <a href="#roar">Roar</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-bg" role="img" aria-label="Stadium atmosphere"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Unofficial · Fan-built · Loud on purpose</p>
+        <h1>Mile High.<br /><span class="accent">Full throttle.</span><br />No ceiling.</h1>
+        <p class="hero-sub">Unofficial Broncos fan HQ — foil-bright cards, ring of stars, pure orange noise.</p>
+        <a class="cta" href="#ring">Spin the ring →</a>
+      </div>
+      <div class="hero-stats" aria-label="Hype stats">
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Foil cards</span></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Mile High energy</span></div>
+        <div class="stat"><span class="stat-num">1</span><span class="stat-label">Mission: noise</span></div>
+      </div>
+    </section>
+
+    <!-- THE RING -->
+    <section id="ring" class="ring-section">
+      <div class="section-head">
+        <p class="eyebrow">Collect the foil</p>
+        <h2>The Broncos Ring</h2>
+        <p class="section-sub">Swipe the foil. Collect the energy.</p>
+      </div>
+
+      <div class="ring-stage">
+        <button class="ring-btn prev" type="button" aria-label="Previous card">‹</button>
+
+        <div class="ring-viewport" id="ringViewport">
+          <div class="ring-track" id="ringTrack" role="list"></div>
+        </div>
+
+        <button class="ring-btn next" type="button" aria-label="Next card">›</button>
+      </div>
+
+      <div class="ring-dots" id="ringDots" role="tablist" aria-label="Card position"></div>
+      <p class="ring-hint">Drag · swipe · arrow keys</p>
+    </section>
+
+    <!-- HYPE BOARD -->
+    <section id="stars" class="stars-section">
+      <div class="section-head">
+        <p class="eyebrow">Loud takes only</p>
+        <h2>Hype Board</h2>
+        <p class="section-sub">Star players. Full volume. No corporate mush.</p>
+      </div>
+      <div class="hype-grid" id="hypeGrid"></div>
+    </section>
+
+    <!-- ROAR -->
+    <section id="roar" class="roar-section">
+      <div class="roar-card">
+        <p class="eyebrow">This is the noise</p>
+        <h2>Built for the thin air.</h2>
+        <p>Unofficial. Unfiltered. Orange-first. If your feed needs more Mile High energy, you found the right ring.</p>
+        <a class="cta cta-outline" href="#ring">Back to the foil →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Unofficial fan site. Not affiliated with the NFL or the Denver Broncos. Built for the noise.</p>
+    <p class="footer-meta">One-shot build · PhoneBuilds channel · 2026</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
