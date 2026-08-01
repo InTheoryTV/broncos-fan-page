@@ -479,9 +479,9 @@ img {
 
 .card-flavor {
   margin: 0.45rem 0 0;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   line-height: 1.35;
-  color: var(--muted);
+  color: rgba(255, 246, 234, 0.92);
   font-style: italic;
 }
 
