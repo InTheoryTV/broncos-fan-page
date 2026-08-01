@@ -54,6 +54,7 @@
   ];
 
   // Franchise Ring of Fame highlights (unofficial fan tribute; not the full 38)
+  // Flavor + hype: Honey copy pack (foil-bright, no corporate mush)
   const ROF = [
     {
       id: "john-elway",
@@ -62,7 +63,9 @@
       number: "7",
       year: "1999",
       image: "rof/john-elway.jpg",
-      flavor: "The Drive. The Dynasty. Forever #7.",
+      flavor: "Drive of a lifetime. Comeback king. Mile High forever.",
+      hype:
+        "The arm that built modern Mile High. Late-game ice in the veins, helicopter spins into legend. Two rings as a player, forever the face of Broncos football.",
     },
     {
       id: "peyton-manning",
@@ -71,7 +74,9 @@
       number: "18",
       year: "2021",
       image: "rof/peyton-manning.jpg",
-      flavor: "Omaha. Super Bowl 50. Perfect snap.",
+      flavor: "Sheriff of the thin air. Reads defenses like open books.",
+      hype:
+        "The Sheriff brought a playbook and a parade. Cadence, timing, surgical strikes — Denver’s offense became a clinic with #18 under center.",
     },
     {
       id: "terrell-davis",
@@ -80,7 +85,9 @@
       number: "30",
       year: "2007",
       image: "rof/terrell-davis.jpg",
-      flavor: "2,008 yards. Mile High thunder.",
+      flavor: "TD time. Bowls, bruises, unstoppable.",
+      hype:
+        "Between the tackles and into October lore. Power, vision, Super Bowl MVP energy. When TD had the rock, the whole mountain leaned forward.",
     },
     {
       id: "shannon-sharpe",
@@ -89,7 +96,9 @@
       number: "84",
       year: "2009",
       image: "rof/shannon-sharpe.jpg",
-      flavor: "Talk it. Walk it. Hall of Fame TE.",
+      flavor: "Tight end thunder. Hands of gold. Mouth of fire.",
+      hype:
+        "Mismatch nightmare with Hall of Fame hands. After the catch, chaos. After the game, the mic. Broncos swagger personified.",
     },
     {
       id: "champ-bailey",
@@ -98,7 +107,9 @@
       number: "24",
       year: "2019",
       image: "rof/champ-bailey.jpg",
-      flavor: "Shutdown royalty. Twelve Pro Bowls.",
+      flavor: "Shutdown royalty. Elite cover. Zero freebies.",
+      hype:
+        "Prime-time lockdown with grace and grit. Receivers disappeared when Champ lined up. Corner play at its purest.",
     },
     {
       id: "demaryius-thomas",
@@ -107,7 +118,9 @@
       number: "88",
       year: "2025",
       image: "rof/demaryius-thomas.jpg",
-      flavor: "DT88. First-ballot energy forever.",
+      flavor: "DT deep threat. Go-ball gravity. Orange forever.",
+      hype:
+        "Big body, bigger moments. Contested catches, deep shots, and a smile that still lives in Broncos Country. #88 never really left.",
     },
   ];
 
@@ -269,9 +282,11 @@
     });
 
     render();
-    // Double rAF: layout + images can shift card widths on first paint
-    requestAnimationFrame(() => {
-      requestAnimationFrame(updateActive);
+    // Double rAF + image load: first paint / decode can shift widths on phone
+    const settle = () => requestAnimationFrame(() => requestAnimationFrame(updateActive));
+    settle();
+    trackEl.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) img.addEventListener("load", settle, { once: true });
     });
 
     return { next, prev, goTo };
@@ -333,9 +348,11 @@
     renderCard: rofCard,
   });
 
-  const hypeGrid = document.getElementById("hypeGrid");
-  hypeGrid.innerHTML = PLAYERS.map(
-    (p) => `
+  function fillHypeGrid(el, items) {
+    if (!el) return;
+    el.innerHTML = items
+      .map(
+        (p) => `
     <article class="hype-card">
       <div class="hype-photo">
         <img src="${p.image}" alt="${p.name} #${p.number}" loading="lazy" />
@@ -346,7 +363,12 @@
         <p>${p.hype}</p>
       </div>
     </article>`
-  ).join("");
+      )
+      .join("");
+  }
+
+  fillHypeGrid(document.getElementById("hypeGrid"), PLAYERS);
+  fillHypeGrid(document.getElementById("legendsGrid"), ROF);
 
   // Arrow keys target the star ring when focused in page
   window.addEventListener("keydown", (e) => {

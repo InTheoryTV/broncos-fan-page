@@ -745,13 +745,13 @@ img {
   }
 
   .sport-card {
-    /* ~full phone frame with side peek of neighbors */
-    flex-basis: min(78vw, 300px);
-    width: min(78vw, 300px);
+    /* Phone frame: room for side peek so first/last still center fully */
+    flex-basis: min(74vw, 290px);
+    width: min(74vw, 290px);
   }
 
   .sport-card.is-active {
-    --lift: 1.03; /* lighter scale so edges never clip on narrow viewports */
+    --lift: 1.02; /* light scale — full card stays inside overflow:hidden */
   }
 
   .card-meta h3 {
@@ -781,8 +781,8 @@ img {
 
 @media (max-width: 380px) {
   .sport-card {
-    flex-basis: min(82vw, 280px);
-    width: min(82vw, 280px);
+    flex-basis: min(78vw, 270px);
+    width: min(78vw, 270px);
   }
 
   .nav {
@@ -811,6 +811,10 @@ img {
   padding-top: 2rem;
   background:
     radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240, 193, 75, 0.12), transparent 60%);
+}
+
+.legends-section {
+  padding-top: 1.5rem;
 }
 
 .ring-section--rof .section-head h2 {
